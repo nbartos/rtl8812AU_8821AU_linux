@@ -356,6 +356,10 @@ struct registry_priv
 #endif
 
 	u8 Regfwoffload;
+
+#ifdef CONFIG_SW_LED
+    u8 led_enable;
+#endif
 };
 
 //For registry parameters

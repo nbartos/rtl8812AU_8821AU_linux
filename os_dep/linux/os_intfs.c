@@ -410,6 +410,12 @@ int rtw_fwoffload = 0; /* 0 default disable , 2 for enable */
 module_param(rtw_fwoffload, int, 0644);
 MODULE_PARM_DESC(rtw_fwoffload, "for FW offload control");
 
+#ifdef CONFIG_SW_LED
+int rtw_led_enable = 1;
+module_param(rtw_led_enable, int, 0644);
+MODULE_PARM_DESC(rtw_led_enable,"Enable status LED");
+#endif //CONFIG_SW_LED
+
 #if defined(CONFIG_CALIBRATE_TX_POWER_BY_REGULATORY) //eFuse: Regulatory selection=1
 int rtw_tx_pwr_lmt_enable = 1;
 int rtw_tx_pwr_by_rate = 1;
@@ -731,6 +737,11 @@ _func_enter_;
 #endif
 
 	registry_par->Regfwoffload= (u8)rtw_fwoffload;
+
+#ifdef CONFIG_SW_LED
+    registry_par->led_enable = (u8)rtw_led_enable;
+#endif //CONFIG_SW_LED
+
 _func_exit_;
 
 	return status;
